@@ -1,0 +1,122 @@
+{% extends "adminbase.html" %} {% block title %} {{request.user}} {% endblock title %}
+{% block nav %}
+{{request.user}} | Event Form
+{% endblock nav %}      
+
+{% block style %}
+    {% comment %} <style> {% endcomment %}
+        .form1{
+            padding-top: 60px;
+        }
+    {% comment %} </style> {% endcomment %}
+{% endblock style %}
+{% block body %}
+
+    <div class="form1">
+        {% if messages %} {% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert" >
+    <strong>{{ message }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %} {% endif %}
+        <form  method="POST" action="/addevent">
+            {% csrf_token %}
+        <section class="vh-100" style="background-color: #2779e2;">
+            <div class="container h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-9">
+          
+                  <h1 class="text-white mb-4">Adding Event</h1>
+          
+                  <div class="card" style="border-radius: 15px;">
+                    <div class="card-body">
+          
+                      <div class="row align-items-center pt-4 pb-3">
+                        <div class="col-md-3 ps-5">
+                            
+                          <h6 class="mb-0">Title</h6>
+          
+                        </div>
+                        <div class="col-md-9 pe-5">
+          
+                          <input type="text" name="title" id="title" class="form-control form-control-lg" />
+          
+                        </div>
+                      </div>
+          
+                      <hr class="mx-n3">
+          
+                      <div class="row align-items-center py-3">
+                        <div class="col-md-3 ps-5">
+          
+                          <h6 class="mb-0">Location</h6>
+          
+                        </div>
+                        <div class="col-md-9 pe-5">
+          
+                          <input type="text" name="location" id="location" class="form-control form-control-lg" placeholder="800 Howard St., San Francisco, CA 94103" />
+          
+                        </div>
+                      </div>
+          
+                      <hr class="mx-n3">
+          
+                      <div class="row align-items-center py-3">
+                        <div class="col-md-3 ps-5">
+          
+                          <h6 class="mb-0">Start Date-Time</h6>
+          
+                        </div>
+                        <div class="col-md-9 pe-5">
+                            <input type="date" name="sdate" id="sdate" class="form-control form-control-lg"  />
+                            <input type="time" name="stime" id="stime" class="form-control form-control-lg"  />
+                          {% comment %} <textarea class="form-control" rows="3" placeholder="Message sent to the employer"></textarea> {% endcomment %}
+          
+                        </div>
+                      <div class="row align-items-center py-3">
+                        <div class="col-md-3 ps-5">
+          
+                          <h6 class="mb-0">End Date-Time</h6>
+          
+                        </div>
+                        <div class="col-md-9 pe-5">
+                            <input type="date" name="edate" id="edate" class="form-control form-control-lg"  />
+                            <input type="time" name="etime" id="etime" class="form-control form-control-lg"  />
+                          {% comment %} {% endcomment %}
+          
+                        </div>
+                      </div>
+          
+                      <hr class="mx-n3">
+          
+                      <div class="row align-items-center py-3">
+                        <div class="col-md-3 ps-5">
+          
+                          <h6 class="mb-0">Description</h6>
+          
+                        </div>
+                        <div class="col-md-9 pe-5">
+          
+                            <textarea class="form-control" name="Description" id="Description" rows="3" placeholder="information about the event"></textarea> 
+          
+                        </div>
+                      </div>
+          
+                      <hr class="mx-n3">
+          
+                      <div class="px-5 py-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Add Event</button>
+                      </div>
+          
+                    </div>
+                  </div>
+          
+                </div>
+              </div>
+            </div>
+        </section>
+    </form>
+    </div>
+{% endblock body %}
